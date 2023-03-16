@@ -106,6 +106,22 @@ void test_R26_1() {
 // R25. <Expression>  :: = <Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Expression(vector<token_323>& all_tokens, int& loc);
+void testR25(){
+  
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("Expression");
+  sampleToken.lexeme_update("Another");
+  all_tokens.push_back(sampleToken);
+  
+	if (procedure_Expression(all_tokens, loc)){
+    std::cout << "R25: Passed" << std::endl;
+  }
+  else {
+    std::cout << "R25: Failed" << std::endl;
+  }
+}
 
 // R25.1 <Expression'>  :: = ϵ | +<Term> <Expression'>  | -<Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
@@ -114,6 +130,23 @@ void test_R26_1() {
 // R24. <Relop> :: = ==   |   !=    | > | <    |  <=   | = >
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Relop(vector<token_323>& all_tokens, int& loc);
+void testR24(){
+
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("!=");
+  sampleToken.lexeme_update("==");
+  all_tokens.push_back(sampleToken);
+
+	if (procedure_Relop(all_tokens, loc)){
+    std::cout << "R24: Passed" << std::endl;
+  }
+  else {
+    std::cout << "R24: Failed" << std::endl;
+  }
+  
+}
 
 // R23. <Condition> :: = <Expression>  <Relop>   <Expression>
 //---------------------------------------------------------------------------------------------------
@@ -246,6 +279,22 @@ void test_R18()
 // R15. <Statement> :: = <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Statement(vector<token_323>& all_tokens, int& loc);
+void testR15(){
+
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("return");
+  sampleToken.lexeme_update("scan");
+  all_tokens.push_back(sampleToken);
+  
+  if (procedure_Statement(all_tokens, loc)) {
+    std::cout << "R15: Passed" << std::endl;
+    }
+  else {
+    std::cout << "R15: Failed" << std::endl;
+  }
+}
 
 // R14. <Statement List> :: = <Statement> | <Statement> <Statement List>
 //---------------------------------------------------------------------------------------------------
@@ -501,11 +550,11 @@ int main(int argc, char *argv[])
   // R26 <Term>
   //
   // R25 <Expression>
-  //
+  //testR25();
   // R25.1 <Expression'>
   //
   // R24 <Relop>
-  //
+  //testR24();
   // R23 <Condition>
   //Failed
   //test_R23();
@@ -524,7 +573,7 @@ int main(int argc, char *argv[])
   // R16 <Compound>
   //
   // R15 <Statement>
-  //
+  //testR15();
   // R14 <Statement List>
   //
   // R13 <IDs>
