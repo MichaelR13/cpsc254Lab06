@@ -1,4 +1,12 @@
-﻿// #include "lexer.hpp"
+﻿/* For all test case functions, each rule uses the following:
+ * - the default file "temp.txt" located in the same directory as the program.
+ *   Place any code you want to test into this text file.
+ * - a vector that will store all the tokens from reading in the contents of the text file.
+ * The boolean result will display whether all the tokens pass or fail whichever
+ * appropriate procedure function is called.
+ * Then the contents of the vector of tokens is displayed to analyze the results. */
+
+// #include "lexer.hpp"
 
 #include <cstdio>
 #include <iostream>
