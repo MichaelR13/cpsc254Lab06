@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include "../procedure_functions.cpp"
 #include "../lexer.cpp"
 
@@ -469,6 +470,7 @@ void test_R5()
 
 int main(int argc, char *argv[])
 {
+  std::ifstream input_file;
   // check if a text file was passed as a command line argument.
   if (argc != 1 && argc < 3)
   {
@@ -488,6 +490,17 @@ int main(int argc, char *argv[])
       std::cerr << "Error unable to open default file temp.txt" << std::endl;
       return EXIT_FAILURE;
     }
+  }
+
+  // check if text file is empty. If it is then have user manually type in tokens.
+  // If the file is not empty, generate the vector with tokens from file contents.
+  if (input_file.peek() != std::ifstream::traits_type::eof())
+  {
+    // TODO: generate tokens from file contents.
+  }
+  else
+  {
+    // TODO: have user manually enter tokens.
   }
 
   //Uncomment whatever function you would like to test
