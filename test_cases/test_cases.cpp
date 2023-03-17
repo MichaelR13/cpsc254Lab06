@@ -519,15 +519,26 @@ void test_R5()
 
 int main(int argc, char *argv[])
 {
-  std::ifstream input_file;
+  // TODO: create vector to hold tokens.
+
   // check if a text file was passed as a command line argument.
-  if (argc != 1 && argc < 3)
+  if (argc >= 3)
+  {
+    std::cerr << "Error: too many command line arguments." << std::endl;
+    exit EXIT_FAILURE;
+  }
+  else if (argc != 1 && argc < 3)
   {
     std::ifstream input_file(argv[1]);
     if (!input_file.is_open())
     {
       std::cerr << "Error: unable to open or find file " << argv[1] << std::endl;
       return EXIT_FAILURE;
+    }
+    else
+    {
+      // TODO: check if file is empty. If empty, pass empty vector to function
+      // for user to input tokens. If file has data, generate tokens into the vector.
     }
   }
   else
@@ -539,17 +550,11 @@ int main(int argc, char *argv[])
       std::cerr << "Error unable to open default file temp.txt" << std::endl;
       return EXIT_FAILURE;
     }
-  }
-
-  // check if text file is empty. If it is then have user manually type in tokens.
-  // If the file is not empty, generate the vector with tokens from file contents.
-  if (input_file.peek() != std::ifstream::traits_type::eof())
-  {
-    // TODO: generate tokens from file contents.
-  }
-  else
-  {
-    // TODO: have user manually enter tokens.
+    else
+    {
+      // TODO: check if file is empty. If empty, pass empty vector to function
+      // for user to input tokens. If file has data, generate tokens into the vector.
+    }
   }
 
   //Uncomment whatever function you would like to test
