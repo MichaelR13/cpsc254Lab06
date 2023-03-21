@@ -1,4 +1,8 @@
-﻿#pragma once
+﻿#ifndef PROCEDURE_FUNCTIONS_H
+#define PROCEDURE_FUNCTIONS_H
+
+#pragma once
+
 #include "lexer.hpp"
 
 
@@ -122,3 +126,5 @@ bool procedure_Opt_Function_Definitions(vector < token_323 > & all_tokens, int &
 //R1. <Rat20F>  :: = <Opt Function Definitions>   $$  <Opt Declaration List>  <Statement List>  $$
 //---------------------------------------------------------------------------------------------------
 bool procedure_Rat20F(vector < token_323 > & all_tokens, int & loc);
+
+#endif
