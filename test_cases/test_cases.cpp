@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include "../procedure_functions.cpp"
 #include "../lexer.cpp"
 
@@ -30,7 +31,7 @@ void test_R27()
     bool test_results = false;
     std::vector<token_323> all_tokens;
     int loc = 0;
-    int check_eof;
+    int check_eof; // additional flag to properly detect the end of file.
 
     while (!input_file.eof()) {
         all_tokens.push_back(lexer_323(input_file));
@@ -74,7 +75,7 @@ void test_R26_1() {
     // Read the input from the file and store it in a vector of tokens
     std::vector<token_323> all_tokens;
     int loc = 0;
-    int check_eof;
+    int check_eof; // additional flag to properly detect the end of file.
 
     while (!input_file.eof()) {
         all_tokens.push_back(lexer_323(input_file));
@@ -106,6 +107,22 @@ void test_R26_1() {
 // R25. <Expression>  :: = <Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Expression(vector<token_323>& all_tokens, int& loc);
+void testR25(){
+  
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("Expression");
+  sampleToken.lexeme_update("Another");
+  all_tokens.push_back(sampleToken);
+  
+	if (procedure_Expression(all_tokens, loc)){
+    std::cout << "R25: Passed" << std::endl;
+  }
+  else {
+    std::cout << "R25: Failed" << std::endl;
+  }
+}
 
 // R25.1 <Expression'>  :: = ϵ | +<Term> <Expression'>  | -<Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
@@ -114,6 +131,23 @@ void test_R26_1() {
 // R24. <Relop> :: = ==   |   !=    | > | <    |  <=   | = >
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Relop(vector<token_323>& all_tokens, int& loc);
+void testR24(){
+
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("!=");
+  sampleToken.lexeme_update("==");
+  all_tokens.push_back(sampleToken);
+
+	if (procedure_Relop(all_tokens, loc)){
+    std::cout << "R24: Passed" << std::endl;
+  }
+  else {
+    std::cout << "R24: Failed" << std::endl;
+  }
+  
+}
 
 // R23. <Condition> :: = <Expression>  <Relop>   <Expression>
 //---------------------------------------------------------------------------------------------------
@@ -124,7 +158,7 @@ void test_R23()
   bool test_results = false;
   std::vector<token_323> all_tokens;
   int loc = 0;
-  int check_eof;
+  int check_eof; // additional flag to properly detect the end of file.
 
   while (!input_file.eof()) {
     all_tokens.push_back(lexer_323(input_file));
@@ -246,7 +280,7 @@ void test_R18()
   bool test_results = false;
   std::vector<token_323> all_tokens;
   int loc = 0;
-  int check_eof;
+  int check_eof; // additional flag to properly detect the end of file.
 
   while (!input_file.eof()) {
     all_tokens.push_back(lexer_323(input_file));
@@ -318,6 +352,22 @@ void test_R17()
 // R15. <Statement> :: = <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Statement(vector<token_323>& all_tokens, int& loc);
+void testR15(){
+
+  std::vector<token_323> all_tokens;
+  int loc = 0;
+  token_323 sampleToken;
+  sampleToken.token_update("return");
+  sampleToken.lexeme_update("scan");
+  all_tokens.push_back(sampleToken);
+  
+  if (procedure_Statement(all_tokens, loc)) {
+    std::cout << "R15: Passed" << std::endl;
+    }
+  else {
+    std::cout << "R15: Failed" << std::endl;
+  }
+}
 
 // R14. <Statement List> :: = <Statement> | <Statement> <Statement List>
 //---------------------------------------------------------------------------------------------------
@@ -363,7 +413,7 @@ void test_R12()
   std::vector<token_323> all_tokens;
   int loc = 0;
   std::ifstream input_file("temp.txt");
-  int check_eof;
+  int check_eof; // additional flag to properly detect the end of file.
 
   while (!input_file.eof()) {
     all_tokens.push_back(lexer_323(input_file));
@@ -440,7 +490,7 @@ void test_R8()
   bool test_results = false;
   std::vector<token_323> all_tokens;
   int loc = 0;
-  int check_eof;
+  int check_eof; // additional flag to properly detect the end of file.
 
   while (!input_file.eof()) {
     all_tokens.push_back(lexer_323(input_file));
@@ -532,7 +582,7 @@ void test_R5()
   all_tokens.push_back(token1);
   all_tokens.push_back(token2); */
 
-  int check_eof;
+  int check_eof; // additional flag to properly detect the end of file.
   while (!input_file.eof()) {
     all_tokens.push_back(lexer_323(input_file));
     check_eof = input_file.peek();
@@ -573,6 +623,44 @@ void test_R5()
 
 int main(int argc, char *argv[])
 {
+  // TODO: create vector to hold tokens.
+
+  // check if a text file was passed as a command line argument.
+  if (argc >= 3)
+  {
+    std::cerr << "Error: too many command line arguments." << std::endl;
+    exit EXIT_FAILURE;
+  }
+  else if (argc != 1 && argc < 3)
+  {
+    std::ifstream input_file(argv[1]);
+    if (!input_file.is_open())
+    {
+      std::cerr << "Error: unable to open or find file " << argv[1] << std::endl;
+      return EXIT_FAILURE;
+    }
+    else
+    {
+      // TODO: check if file is empty. If empty, pass empty vector to function
+      // for user to input tokens. If file has data, generate tokens into the vector.
+    }
+  }
+  else
+  {
+    // if no command line arguments passed, assign default file and try to open it.
+    std::ifstream input_file("temp.txt");
+    if (!input_file.is_open())
+    {
+      std::cerr << "Error unable to open default file temp.txt" << std::endl;
+      return EXIT_FAILURE;
+    }
+    else
+    {
+      // TODO: check if file is empty. If empty, pass empty vector to function
+      // for user to input tokens. If file has data, generate tokens into the vector.
+    }
+  }
+
   //Uncomment whatever function you would like to test
   // R28 <Primary>
   //
@@ -584,11 +672,11 @@ int main(int argc, char *argv[])
   // R26 <Term>
   //
   // R25 <Expression>
-  //
+  //testR25();
   // R25.1 <Expression'>
   //
   // R24 <Relop>
-  //
+  //testR24();
   // R23 <Condition>
   //Failed
   //test_R23();
@@ -607,7 +695,7 @@ int main(int argc, char *argv[])
   // R16 <Compound>
   //
   // R15 <Statement>
-  //
+  //testR15();
   // R14 <Statement List>
   //
   // R13 <IDs>
