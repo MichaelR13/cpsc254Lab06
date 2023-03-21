@@ -155,7 +155,42 @@ void test_R23()
 // R22. <While> :: = while (<Condition>) < Statement >
 //---------------------------------------------------------------------------------------------------
 // bool procedure_While(vector<token_323>& all_tokens, int& loc);
+void test_R22()
+{
+  //Create vector of tokens and default location of 0
+  std::vector<token_323> all_tokens;
+  int loc = 0;
 
+  //Create sample input tokens for test case
+  token_323 token1;
+  token1.token_update("keyword");
+  token1.lexeme_update("while");
+
+  token_323 token2;
+  token2.token_update("symbol");
+  token2.lexeme_update("(");
+
+  token_323 token3;
+  token3.token_update("statement");
+  token3.lexeme_update("Condition");
+
+  token_323 token4;
+  token4.token_update("symbol");
+  token4.lexeme_update(")");
+
+  //Push tokens into vector
+  all_tokens.push_back(token1, token2, token3, token4);
+
+  //Call function and set to results bool
+  bool results = procedure_While(all_tokens, loc);
+
+  //Print correct statement for results
+  if (results == true) {
+   std::cout << "Test passed: R22 <While>" << std::endl;
+ } else {
+   std::cout << "Test failed: R22 <While>" << std::endl;
+ }
+}
 // R21. <Scan> :: = get(<IDs>);
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Scan(vector<token_323>& all_tokens, int& loc);
@@ -238,7 +273,44 @@ void test_R18()
 // R17. <Assign> :: = <Identifier> = <Expression>;
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Assign(vector<token_323>& all_tokens, int& loc);
+void test_R17()
+{
+  //Create vector of tokens
+  std::vector<token_323> all_tokens;
+  int loc = 0;
 
+  //Create sample input tokens to test and push into vector
+  token_323 token1;
+  token1.token_update("identifier");
+  token1.lexeme_update("a");
+  all_tokens.push_back(token1);
+
+  token_323 token2;
+  token2.token_update("operator");
+  token1.lexeme_update("=");
+  all_tokens.push_back(token2);
+
+  token_323 token3;
+  token3.token_update("num");
+  token3.lexeme_update("1");
+  all_tokens.push_back(token3);
+
+  token_323 token4;
+  token4.token_update("symbol");
+  token4.lexeme_update(";");
+  all_tokens.push_back(token4);
+
+  //Call function and set to results bool
+  bool results = procedure_Assign(all_tokens, loc);
+
+  //Print out appropriate statements for results
+  if (results == true) {
+    std::cout << "Test passed: R17 <Assign>" << std::endl;
+  } else {
+    std::cout << "Test failed: R17 <Assign>" << std::endl;
+  }
+
+}
 // R16. <Compound> :: = { <Statement List> }
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Compound(vector<token_323>& all_tokens, int& loc);
@@ -256,7 +328,7 @@ void test_R18()
 // bool procedure_IDs(vector<token_323>& all_tokens, int& loc);
 
 void test_R13() {
-    
+
     std::vector<token_323> all_tokens;
     int loc = 0;
 
@@ -322,7 +394,39 @@ void test_R12()
 // R10. <Opt Declaration List> :: = <Declaration List> | <Empty>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Opt_Declaration_List(vector<token_323>& all_tokens, int& loc);
+void test_R10()
+{
+  // Create sample vector of tokens
+  std::vector<token_323> all_tokens;
+  int loc = 0;
 
+  // Create sample tokens and push to the vector all_tokens
+  token_323 token1;
+  token1.token_update("keyword");
+  token1.lexeme_update("int");
+  all_tokens.push_back(token1);
+
+  token_323 token2;
+  token2.token_update("identifier");
+  token2.lexeme_update("a");
+  all_tokens.push_back(token2);
+
+  token_323 token3;
+  token3.token_update("symbol");
+  token3.lexeme_update(";");
+  all_tokens.push_back(token3);
+
+  //Call Opt_Declaration_List function and set to result bool
+  bool result = procedure_Opt_Declaration_List(all_tokens, loc);
+
+  // Print out appropriate statment for result
+  if (result == true)
+  {
+    std::cout << "Test passed: R10 <Opt_Declaration_List>" << std::endl;
+  } else {
+    std::cout << "Test failed: R10 <Opt_Declaration_List>" << std::endl;
+  }
+}
 // R9. <Body>  :: = { < Statement List> }
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Body(vector<token_323>& all_tokens, int& loc);
@@ -367,7 +471,7 @@ void test_R8()
 // R7. <Parameter> :: = <IDs >  <Qualifier>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Parameter(vector<token_323>& all_tokens, int& loc);
-void test_R7() 
+void test_R7()
 {
 
     std::vector<token_323> all_tokens;
@@ -415,12 +519,12 @@ void test_R5()
   bool test_results = false;
   std::vector<token_323> all_tokens;
   int loc = 0;
- 
+
   // uncomment for manual testing of tokens.
   /* token_323 token1;
   token1.token_update("Keyword");
   token1.lexeme_update("int");
-  
+
   token_323 token2;
   token2.token_update("Identifier");
   token2.lexeme_update("num1");
@@ -489,7 +593,7 @@ int main(int argc, char *argv[])
   //Failed
   //test_R23();
   // R22 <While>
-  //
+  //test_R22();
   // R21 <Scan>
   //
   // R20 <Print>
@@ -499,7 +603,7 @@ int main(int argc, char *argv[])
   // R18 <If>
   //test_R18();
   // R17 <Assign>
-  //
+  //test_R17();
   // R16 <Compound>
   //
   // R15 <Statement>
@@ -513,7 +617,7 @@ int main(int argc, char *argv[])
   // R11 <Declaration List>
   //
   // R10 <Opt Declaration List>
-  //
+  //test_R10();
   // R9 <Body>
   //
   // R8 <Qualifier>
