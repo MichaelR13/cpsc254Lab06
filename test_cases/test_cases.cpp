@@ -629,7 +629,7 @@ int main(int argc, char *argv[])
   if (argc >= 3)
   {
     std::cerr << "Error: too many command line arguments." << std::endl;
-    exit EXIT_FAILURE;
+    return EXIT_FAILURE;
   }
   else if (argc != 1 && argc < 3)
   {
