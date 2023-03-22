@@ -127,7 +127,7 @@ bool procedure_Primary(vector < token_323 > & all_tokens, int & loc) {
 
     //instruction pushm
     instruction_table temp_ins;
-    temp_ins.new_instruction("PUSHM", token_holder.lexeme());
+    temp_ins.NewInstruction("PUSHM", token_holder.lexeme());
     all_tokens[0].all_instructions.push_back(temp_ins);
 
     //token_holder.token_print_helper();
@@ -174,7 +174,7 @@ bool procedure_Primary(vector < token_323 > & all_tokens, int & loc) {
   {
     //instruction pushi
     instruction_table temp_ins;
-    temp_ins.new_instruction("PUSHI", token_holder.lexeme());
+    temp_ins.NewInstruction("PUSHI", token_holder.lexeme());
     all_tokens[0].all_instructions.push_back(temp_ins);
 
     //token_holder.token_print_helper();
@@ -227,7 +227,7 @@ bool procedure_Primary(vector < token_323 > & all_tokens, int & loc) {
   {
     //instruction push true
     instruction_table temp_ins;
-    temp_ins.new_instruction("PUSHI", "1");
+    temp_ins.NewInstruction("PUSHI", "1");
     all_tokens[0].all_instructions.push_back(temp_ins);
 
     //token_holder.token_print_helper();
@@ -243,7 +243,7 @@ bool procedure_Primary(vector < token_323 > & all_tokens, int & loc) {
 
     //instruction push true
     instruction_table temp_ins;
-    temp_ins.new_instruction("PUSHI", "0");
+    temp_ins.NewInstruction("PUSHI", "0");
     all_tokens[0].all_instructions.push_back(temp_ins);
 
     //token_holder.token_print_helper();
@@ -322,7 +322,7 @@ bool procedure_Term_q(vector < token_323 > & all_tokens, int & loc) {
     if (procedure_Factor(all_tokens, loc)) {
       //instruction *
       instruction_table temp_ins;
-      temp_ins.new_instruction("MUL", "nil");
+      temp_ins.NewInstruction("MUL", "nil");
       all_tokens[0].all_instructions.push_back(temp_ins);
 
       if (procedure_Term_q(all_tokens, loc)) {
@@ -351,7 +351,7 @@ bool procedure_Term_q(vector < token_323 > & all_tokens, int & loc) {
     if (procedure_Factor(all_tokens, loc)) {
       //instruction  /
       instruction_table temp_ins;
-      temp_ins.new_instruction("DIV", "nil");
+      temp_ins.NewInstruction("DIV", "nil");
       all_tokens[0].all_instructions.push_back(temp_ins);
 
       if (procedure_Term_q(all_tokens, loc)) {
@@ -427,20 +427,14 @@ bool procedure_Expression(vector < token_323 > & all_tokens, int & loc) {
   token_holder = all_tokens[loc];
   if (procedure_Term(all_tokens, loc)) {
     if (procedure_Expression_q(all_tokens, loc)) {
-
       std::string output_str = "<Expression>  -> <Term> <Expression'> \n";
       all_tokens[loc_helper].rule_holder.push_back(output_str);
-      //std::cout << output_str;
-
       return_holder = true;
     } else {
       loc--;
       std::cout << "error, expecting <Expression'> \n";
-      return_holder = false;
     }
-  } else {
-    return_holder = false;
-  }
+  } 
   return return_holder;
 }
 
@@ -464,7 +458,7 @@ bool procedure_Expression_q(vector < token_323 > & all_tokens, int & loc) {
     if (procedure_Term(all_tokens, loc)) {
       //instruction +
       instruction_table temp_ins;
-      temp_ins.new_instruction("ADD", "nil");
+      temp_ins.NewInstruction("ADD", "nil");
       all_tokens[0].all_instructions.push_back(temp_ins);
 
       if (procedure_Expression_q(all_tokens, loc)) {
@@ -492,7 +486,7 @@ bool procedure_Expression_q(vector < token_323 > & all_tokens, int & loc) {
     if (procedure_Term(all_tokens, loc)) {
       //instruction -
       instruction_table temp_ins;
-      temp_ins.new_instruction("SUB", "nil");
+      temp_ins.NewInstruction("SUB", "nil");
       all_tokens[0].all_instructions.push_back(temp_ins);
 
       if (procedure_Expression_q(all_tokens, loc)) {
@@ -536,97 +530,76 @@ bool procedure_Relop(vector < token_323 > & all_tokens, int & loc) {
   bool return_holder = false;
   token_323 token_holder;
   token_holder = all_tokens[loc];
+  std::string output_str = "Nothing is registered";
+
   if (token_holder.lexeme() == "==") {
     instruction_table temp_ins;
-    temp_ins.new_instruction("EQU", "exchange next");
+    temp_ins.NewInstruction("EQU", "exchange next");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> == \n";
+    output_str = "<Relop> -> == \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else if (token_holder.lexeme() == "!=") {
     instruction_table temp_ins;
-    temp_ins.new_instruction("NEQ", "exchange next");
+    temp_ins.NewInstruction("NEQ", "exchange next");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> != \n";
+    output_str = "<Relop> -> != \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else if (token_holder.lexeme() == ">") {
     instruction_table temp_ins;
-    temp_ins.new_instruction("GRT", "exchange next");
+    temp_ins.NewInstruction("GRT", "exchange next");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> > \n";
+    output_str = "<Relop> -> > \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else if (token_holder.lexeme() == "<") {
     instruction_table temp_ins;
-    temp_ins.new_instruction("LES", "exchange next");
+    temp_ins.NewInstruction("LES", "exchange next");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> < \n";
+    output_str = "<Relop> -> < \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else if (token_holder.lexeme() == "<=") {
     instruction_table temp_ins;
-
-    temp_ins.new_instruction("EQU", "exchange +3");
+    temp_ins.NewInstruction("EQU", "exchange +3");
     all_tokens[0].all_instructions.push_back(temp_ins);
-    temp_ins.new_instruction("GRT", "nil");
+    temp_ins.NewInstruction("GRT", "nil");
     all_tokens[0].all_instructions.push_back(temp_ins);
-    temp_ins.new_instruction("PUSHI", "0");
+    temp_ins.NewInstruction("PUSHI", "0");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> <= \n";
+    output_str = "<Relop> -> <= \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else if (token_holder.lexeme() == "=>") {
     instruction_table temp_ins;
-
-    temp_ins.new_instruction("EQU", "exchange +3");
+    temp_ins.NewInstruction("EQU", "exchange +3");
     all_tokens[0].all_instructions.push_back(temp_ins);
-    temp_ins.new_instruction("LES", "nil");
+    temp_ins.NewInstruction("LES", "nil");
     all_tokens[0].all_instructions.push_back(temp_ins);
-    temp_ins.new_instruction("PUSHI", "0");
+    temp_ins.NewInstruction("PUSHI", "0");
     all_tokens[0].all_instructions.push_back(temp_ins);
-
-    //token_holder.token_print_helper();
     loc++;
-
-    std::string output_str = "<Relop> -> => \n";
+    output_str = "<Relop> -> => \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
+
   } else {
     return_holder = false;
   }
+  //for testing purposes:
+  //token_holder.TokenPrintHelper();
+  //std::cout << output_str;
   return return_holder;
 }
 
@@ -683,7 +656,7 @@ bool procedure_While(vector < token_323 > & all_tokens, int & loc) {
   if (token_holder.lexeme() == "while") {
     //label
     instruction_table temp_ins;
-    temp_ins.new_instruction("LABEL", "nil");
+    temp_ins.NewInstruction("LABEL", "nil");
     all_tokens[0].all_instructions.push_back(temp_ins);
 
     //token_holder.token_print_helper();
@@ -698,7 +671,7 @@ bool procedure_While(vector < token_323 > & all_tokens, int & loc) {
         if (token_holder.lexeme() == ")") {
           //jump after cmp
           instruction_table temp_ins;
-          temp_ins.new_instruction("JUMPZ", "next jump");
+          temp_ins.NewInstruction("JUMPZ", "next jump");
           all_tokens[0].all_instructions.push_back(temp_ins);
 
           //token_holder.token_print_helper();
@@ -706,7 +679,7 @@ bool procedure_While(vector < token_323 > & all_tokens, int & loc) {
           if (procedure_Statement(all_tokens, loc)) {
             //jmp
             instruction_table temp_ins;
-            temp_ins.new_instruction("JUMP", "last label");
+            temp_ins.NewInstruction("JUMP", "last label");
             all_tokens[0].all_instructions.push_back(temp_ins);
 
             std::string output_str = "<While> -> while (<Condition>) < Statement > \n";
@@ -770,19 +743,19 @@ bool procedure_Scan(vector < token_323 > & all_tokens, int & loc) {
       if (procedure_IDs(all_tokens, loc)) {
         //instruction for scan
         instruction_table temp;
-        temp.new_instruction("STDIN", "nil");
+        temp.NewInstruction("STDIN", "nil");
         all_tokens[0].all_instructions.push_back(temp);
         string temp_id = all_tokens[j].lexeme();
-        temp.new_instruction("POPM", temp_id);
+        temp.NewInstruction("POPM", temp_id);
         all_tokens[0].all_instructions.push_back(temp);
         j++;
         if (all_tokens[j].lexeme() == ",") {
           while (all_tokens[j].lexeme() == ",") {
             j++;
-            temp.new_instruction("STDIN", "nil");
+            temp.NewInstruction("STDIN", "nil");
             all_tokens[0].all_instructions.push_back(temp);
             string temp_id = all_tokens[j].lexeme();
-            temp.new_instruction("POPM", temp_id);
+            temp.NewInstruction("POPM", temp_id);
             all_tokens[0].all_instructions.push_back(temp);
             j++;
           }
@@ -864,7 +837,7 @@ bool procedure_Print(vector < token_323 > & all_tokens, int & loc) {
           loc++;
 
           instruction_table temp_ins;
-          temp_ins.new_instruction("STDOUT", "nil");
+          temp_ins.NewInstruction("STDOUT", "nil");
           all_tokens[0].all_instructions.push_back(temp_ins);
 
           token_holder = all_tokens[loc];
@@ -990,7 +963,7 @@ bool procedure_If(vector < token_323 > & all_tokens, int & loc) {
         if (token_holder.lexeme() == ")") //  ) 
         {
           instruction_table temp_ins;
-          temp_ins.new_instruction("JUMPZ", "next label");
+          temp_ins.NewInstruction("JUMPZ", "next label");
           all_tokens[0].all_instructions.push_back(temp_ins);
 
           //token_holder.token_print_helper();
@@ -998,7 +971,7 @@ bool procedure_If(vector < token_323 > & all_tokens, int & loc) {
           if (procedure_Statement(all_tokens, loc)) // < Statement > 
           {
             instruction_table temp_ins;
-            temp_ins.new_instruction("LABEL", "nil");
+            temp_ins.NewInstruction("LABEL", "nil");
             all_tokens[0].all_instructions.push_back(temp_ins);
 
             token_holder = all_tokens[loc];
@@ -1118,7 +1091,7 @@ bool procedure_Assign(vector < token_323 > & all_tokens, int & loc) {
         token_holder = all_tokens[loc];
         //add popm instruction
         instruction_table temp_ins;
-        temp_ins.new_instruction("POPM", temp_token);
+        temp_ins.NewInstruction("POPM", temp_token);
         all_tokens[0].all_instructions.push_back(temp_ins);
 
         if (token_holder.lexeme() == ";") {
@@ -1217,64 +1190,41 @@ bool procedure_Statement(vector < token_323 > & all_tokens, int & loc) {
   bool return_holder = false;
   token_323 token_holder;
   token_holder = all_tokens[loc];
-  if (procedure_Compound(all_tokens, loc)) //<Compound> 
-  {
+  std::string output_str = "Nothing was registered";
 
-    std::string output_str = "<Statement> -> <Compound> \n";
+  if (procedure_Compound(all_tokens, loc)) {
+    output_str = "<Statement> -> <Compound> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_Assign(all_tokens, loc)) // <Assign> 
-  {
-
-    std::string output_str = "<Statement> -> <Assign> \n";
+  } else if (procedure_Assign(all_tokens, loc)) {
+    output_str = "<Statement> -> <Assign> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_If(all_tokens, loc)) // <If> 
-  {
-
-    std::string output_str = "<Statement> -> <If>  \n";
+  } else if (procedure_If(all_tokens, loc)) {
+    output_str = "<Statement> -> <If>  \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_Return(all_tokens, loc)) // <Return> 
-  {
-
-    std::string output_str = "<Statement> -> <Return> \n";
+  } else if (procedure_Return(all_tokens, loc)) {
+    output_str = "<Statement> -> <Return> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_Print(all_tokens, loc)) //<Print> 
-  {
-
-    std::string output_str = "<Statement> -> <Print> \n";
+  } else if (procedure_Print(all_tokens, loc)) {
+    output_str = "<Statement> -> <Print> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_Scan(all_tokens, loc)) // <Scan>  
-  {
-
-    std::string output_str = "<Statement> -> <Scan> \n";
+  } else if (procedure_Scan(all_tokens, loc)) {
+    output_str = "<Statement> -> <Scan> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
-  } else if (procedure_While(all_tokens, loc)) //<While>
-  {
-    std::string output_str = "<Statement> -> <While> \n";
+  } else if (procedure_While(all_tokens, loc)) {
+    output_str = "<Statement> -> <While> \n";
     all_tokens[loc_helper].rule_holder.push_back(output_str);
-    //std::cout << output_str;
-
     return_holder = true;
   } else {
     return_holder = false;
   }
+  //for testing purposes:
+  //std::cout << output_str;
   return return_holder;
 }
 
