@@ -16,6 +16,21 @@
 #include "../procedure_functions.cpp"
 #include "../lexer.cpp"
 
+void writeTokensToFile(std::vector<token_323> tokens, std::string filename) {
+    std::ofstream outputFile("outputfile.txt");
+    
+    if (outputFile.is_open()) {
+        for (auto token : tokens) {
+            outputFile << token.token() << "\t" << token.lexeme() << std::endl;
+        }
+        
+        outputFile.close();
+        std::cout << "Tokens written to file " << filename << std::endl;
+    } else {
+        std::cout << "Error: Unable to open file " << filename << std::endl;
+    }
+}
+
 // bool identifier_helper(token_323 input_token);
 
 // R28. <Primary> :: = <Identifier> | <Integer> | <Identifier>  (<IDs>) | (<Expression>) | <Real> | true | false
@@ -54,8 +69,10 @@
         token.token_print_helper();
     }
 
-    input_file.close();
+    writeTokensToFile(all_tokens, "outputfile.txt");
 
+    input_file.close();
+    
     return;
 }
 
@@ -98,6 +115,7 @@ void test_R26_1() {
     for (auto token : all_tokens) {
         token.token_print_helper();
     }
+    	writeTokensToFile(all_tokens, "outputfile.txt");
 } */
 
 // R26. <Term>    :: = <Factor> <Term>'
@@ -120,6 +138,7 @@ void testR25() {
   } else {
     std::cout << "R25: Failed" << std::endl;
   }
+	writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R25.1 <Expression'>  :: = ϵ | +<Term> <Expression'>  | -<Term> <Expression'>
@@ -142,6 +161,7 @@ void testR24() {
   } else {
     std::cout << "R24: Failed" << std::endl;
   }
+	writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R23. <Condition> :: = <Expression>  <Relop>   <Expression>
@@ -175,7 +195,7 @@ void testR24() {
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
-
+  writeTokensToFile(all_tokens, "outputfile.txt");
   input_file.close();
 
   return;
@@ -219,6 +239,7 @@ void test_R22()
  } else {
    std::cout << "Test failed: R22 <While>" << std::endl;
  }
+ writeTokensToFile(all_tokens, "outputfile.txt");
 }
 // R21. <Scan> :: = get(<IDs>);
 //---------------------------------------------------------------------------------------------------
@@ -262,6 +283,7 @@ void test_R19() {
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 
 }
 
@@ -297,6 +319,7 @@ void test_R18()
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R17. <Assign> :: = <Identifier> = <Expression>;
@@ -338,6 +361,7 @@ void test_R17()
   } else {
     std::cout << "Test failed: R17 <Assign>" << std::endl;
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 
 }
 // R16. <Compound> :: = { <Statement List> }
@@ -360,6 +384,7 @@ void test_R17()
   } else {
     std::cout << "R15: Failed" << std::endl;
   }
+	writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R14. <Statement List> :: = <Statement> | <Statement> <Statement List>
@@ -395,6 +420,7 @@ void test_R17()
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R12. <Declaration> :: = <Qualifier > <IDs>
@@ -428,6 +454,7 @@ void test_R12()
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R11. <Declaration List>  : = <Declaration>; | <Declaration>; <Declaration List>
@@ -469,6 +496,7 @@ void test_R10()
   } else {
     std::cout << "Test failed: R10 <Opt_Declaration_List>" << std::endl;
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 // R9. <Body>  :: = { < Statement List> }
 //---------------------------------------------------------------------------------------------------
@@ -505,6 +533,7 @@ void test_R8()
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 
   input_file.close();
 
@@ -545,6 +574,7 @@ void test_R7()
   for (auto token : all_tokens) {
     token.token_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 
@@ -597,6 +627,7 @@ void test_R5()
     token.token_print_helper();
     //token.rule_print_helper();
   }
+  writeTokensToFile(all_tokens, "outputfile.txt");
 }
 
 // R4. <Function> :: = function  <Identifier>  (  <Opt Parameter List>  )   < Opt Declaration List >   <Body>
