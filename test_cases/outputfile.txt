@@ -1,0 +1,38 @@
+Keyword	if
+Other Separators	 
+Separator	(
+Identifier	name1
+Other Separators	 
+Operator	==
+Other Separators	 
+Identifier	name2
+Separator	)
+Other Separators	 
+Separator	{
+Other Separators	
+
+Other Separators	 
+Other Separators	 
+Keyword	return
+Other Separators	 
+Keyword	true
+Separator	;
+Other Separators	
+
+Separator	}
+Other Separators	 
+Keyword	else
+Other Separators	 
+Separator	{
+Other Separators	
+
+Other Separators	 
+Other Separators	 
+Keyword	return
+Other Separators	 
+Keyword	false
+Separator	;
+Other Separators	
+
+Separator	}
+An error occured. Still in accepting state	L

@@ -74,12 +74,12 @@ void writeTokensToFile(std::vector<token_323> tokens, std::string filename) {
     input_file.close();
     
     return;
-}
+} */
 
 // R26.1 <Term'> :: = * <Factor> <Term>' | / <Factor> <Term>' | ϵ
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Term_q(vector<token_323>& all_tokens, int& loc);
-void test_R26_1() {
+/*void test_R26_1() {
     // Open the input file
     std::ifstream input_file("temp.txt");
 
@@ -125,7 +125,7 @@ void test_R26_1() {
 // R25. <Expression>  :: = <Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Expression(vector<token_323>& all_tokens, int& loc);
-void testR25() {
+/*void testR25() {
   std::vector<token_323> all_tokens;
   int loc = 0;
   token_323 sampleToken;
@@ -139,7 +139,7 @@ void testR25() {
     std::cout << "R25: Failed" << std::endl;
   }
 	writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R25.1 <Expression'>  :: = ϵ | +<Term> <Expression'>  | -<Term> <Expression'>
 //---------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ void testR25() {
 // R24. <Relop> :: = ==   |   !=    | > | <    |  <=   | = >
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Relop(vector<token_323>& all_tokens, int& loc);
-void testR24() {
+/*void testR24() {
   std::vector<token_323> all_tokens;
   int loc = 0;
   token_323 sampleToken;
@@ -162,7 +162,7 @@ void testR24() {
     std::cout << "R24: Failed" << std::endl;
   }
 	writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R23. <Condition> :: = <Expression>  <Relop>   <Expression>
 //---------------------------------------------------------------------------------------------------
@@ -199,12 +199,12 @@ void testR24() {
   input_file.close();
 
   return;
-}
+} */
 
 // R22. <While> :: = while (<Condition>) < Statement >
 //---------------------------------------------------------------------------------------------------
 // bool procedure_While(vector<token_323>& all_tokens, int& loc);
-void test_R22()
+/*void test_R22()
 {
   //Create vector of tokens and default location of 0
   std::vector<token_323> all_tokens;
@@ -240,7 +240,8 @@ void test_R22()
    std::cout << "Test failed: R22 <While>" << std::endl;
  }
  writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
+
 // R21. <Scan> :: = get(<IDs>);
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Scan(vector<token_323>& all_tokens, int& loc);
@@ -253,7 +254,7 @@ void test_R22()
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Return(vector<token_323>& all_tokens, int& loc);
 
-void test_R19() {
+/*void test_R19() {
   std::vector<token_323> all_tokens;
   int loc = 0;
 
@@ -285,13 +286,12 @@ void test_R19() {
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
 
-}
-
+} */
 
 // R18. <If> :: = if (<Condition>) < Statement > fi | if (<Condition>) < Statement > else  <Statement>  fi
 //---------------------------------------------------------------------------------------------------
 // bool procedure_If(vector<token_323>& all_tokens, int& loc);
-void test_R18()
+/*void test_R18()
 {
   std::ifstream input_file("temp.txt");
   bool test_results = false;
@@ -320,12 +320,12 @@ void test_R18()
     token.token_print_helper();
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R17. <Assign> :: = <Identifier> = <Expression>;
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Assign(vector<token_323>& all_tokens, int& loc);
-void test_R17()
+/*void test_R17()
 {
   //Create vector of tokens
   std::vector<token_323> all_tokens;
@@ -363,7 +363,8 @@ void test_R17()
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
 
-}
+} */
+
 // R16. <Compound> :: = { <Statement List> }
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Compound(vector<token_323>& all_tokens, int& loc);
@@ -371,7 +372,7 @@ void test_R17()
 // R15. <Statement> :: = <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Statement(vector<token_323>& all_tokens, int& loc);
-*/void testR15() {
+/*void testR15() {
   std::vector<token_323> all_tokens;
   int loc = 0;
   token_323 sampleToken;
@@ -385,7 +386,7 @@ void test_R17()
     std::cout << "R15: Failed" << std::endl;
   }
 	writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R14. <Statement List> :: = <Statement> | <Statement> <Statement List>
 //---------------------------------------------------------------------------------------------------
@@ -421,12 +422,12 @@ void test_R17()
     token.token_print_helper();
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R12. <Declaration> :: = <Qualifier > <IDs>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Declaration(vector<token_323>& all_tokens, int& loc);
-void test_R12()
+/*void test_R12()
 {
   bool test_results = false;
   std::vector<token_323> all_tokens;
@@ -455,7 +456,7 @@ void test_R12()
     token.token_print_helper();
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 // R11. <Declaration List>  : = <Declaration>; | <Declaration>; <Declaration List>
 //---------------------------------------------------------------------------------------------------
@@ -464,7 +465,7 @@ void test_R12()
 // R10. <Opt Declaration List> :: = <Declaration List> | <Empty>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Opt_Declaration_List(vector<token_323>& all_tokens, int& loc);
-void test_R10()
+/*void test_R10()
 {
   // Create sample vector of tokens
   std::vector<token_323> all_tokens;
@@ -497,7 +498,8 @@ void test_R10()
     std::cout << "Test failed: R10 <Opt_Declaration_List>" << std::endl;
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
+
 // R9. <Body>  :: = { < Statement List> }
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Body(vector<token_323>& all_tokens, int& loc);
@@ -505,7 +507,7 @@ void test_R10()
 // R8. <Qualifier> :: = int | boolean | real
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Qualifier(vector<token_323>& all_tokens, int& loc);
-void test_R8()
+/*void test_R8()
 {
   std::ifstream input_file("temp.txt");
   bool test_results = false;
@@ -538,12 +540,12 @@ void test_R8()
   input_file.close();
 
   return;
-}
+} */
 
 // R7. <Parameter> :: = <IDs >  <Qualifier>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Parameter(vector<token_323>& all_tokens, int& loc);
-void test_R7()
+/*void test_R7()
 {
 
     std::vector<token_323> all_tokens;
@@ -575,7 +577,7 @@ void test_R7()
     token.token_print_helper();
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
-}
+} */
 
 
 // R6. <Parameter List>  :: = <Parameter> | <Parameter>, <Parameter List>
@@ -585,34 +587,10 @@ void test_R7()
 // R5. <Opt Parameter List> :: = <Parameter List> | <Empty>
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Opt_Parameter_List(vector<token_323>& all_tokens, int& loc);
-void test_R5()
+void test_R5(std::vector<token_323>& all_tokens)
 {
-  // write input to be tested in file before running test.
-  std::ifstream input_file("temp.txt");
-  bool test_results = false;
-  std::vector<token_323> all_tokens;
   int loc = 0;
-
-  // uncomment for manual testing of tokens.
-  /* token_323 token1;
-  token1.token_update("Keyword");
-  token1.lexeme_update("int");
-
-  token_323 token2;
-  token2.token_update("Identifier");
-  token2.lexeme_update("num1");
-
-  all_tokens.push_back(token1);
-  all_tokens.push_back(token2); */
-  /*
-  int check_eof; // additional flag to properly detect the end of file.
-  while (!input_file.eof()) {
-    all_tokens.push_back(lexer_323(input_file));
-    check_eof = input_file.peek();
-    if (check_eof == EOF) {
-      break;
-    }
-  }
+  bool test_results = false;
 
   test_results = procedure_Opt_Parameter_List(all_tokens, loc);
 
@@ -624,8 +602,7 @@ void test_R5()
 
   std::cout << "\nHere are all the tokens in the vector:" << std::endl;
   for (auto token : all_tokens) {
-    token.token_print_helper();
-    //token.rule_print_helper();
+    token.TokenPrintHelper();
   }
   writeTokensToFile(all_tokens, "outputfile.txt");
 }
@@ -644,7 +621,7 @@ void test_R5()
 // R1. <Rat20F>  :: = <Opt Function Definitions>   $$  <Opt Declaration List>  <Statement List>  $$
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Rat20F(vector<token_323> & all_tokens, int& loc);
-*/
+
 
 int main(int argc, char * argv[]) {
   string file_name = "temp.txt";
@@ -739,7 +716,7 @@ int main(int argc, char * argv[]) {
   // R6 <Parameter List>
   //
   // R5 <Opt Parameter List>
-  //test_R5();
+  //test_R5(tokens);
   // R4 <Function>
   //
   // R3 <Function Definitions>
