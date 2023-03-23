@@ -614,45 +614,44 @@ void test_R5()
 //---------------------------------------------------------------------------------------------------
 // bool procedure_Rat20F(vector<token_323> & all_tokens, int& loc);
 */
-int main(int argc, char *argv[])
-{
-  // TODO: create vector to hold tokens.
 
-  // check if a text file was passed as a command line argument.
-  if (argc >= 3)
-  {
-    std::cerr << "Error: too many command line arguments." << std::endl;
-    return EXIT_FAILURE;
+int main(int argc, char * argv[]) {
+  string file_name = "temp.txt";
+
+  // Check if filename is provided
+  if (argc > 1) {
+    file_name = argv[1];
   }
-  else if (argc != 1 && argc < 3)
-  {
-    std::ifstream input_file(argv[1]);
-    if (!input_file.is_open())
-    {
-      std::cerr << "Error: unable to open or find file " << argv[1] << std::endl;
-      return EXIT_FAILURE;
-    }
-    else
-    {
-      // TODO: check if file is empty. If empty, pass empty vector to function
-      // for user to input tokens. If file has data, generate tokens into the vector.
-    }
+
+  // Open file for input
+  ifstream input_file(file_name);
+
+  // Check if file is open
+  if (!input_file.is_open()) {
+    cout << "Error opening file\n";
+    return 1;
   }
-  else
-  {
-    // if no command line arguments passed, assign default file and try to open it.
-    std::ifstream input_file("temp.txt");
-    if (!input_file.is_open())
-    {
-      std::cerr << "Error unable to open default file temp.txt" << std::endl;
-      return EXIT_FAILURE;
-    }
-    else
-    {
-      // TODO: check if file is empty. If empty, pass empty vector to function
-      // for user to input tokens. If file has data, generate tokens into the vector.
-    }
+
+  // Check if file has data
+  if (input_file.peek() == ifstream::traits_type::eof()) {
+    cout << "File is empty\n";
+    return 1;
   }
+
+  vector<token_323> tokens;
+
+  // Generate tokens from file
+  while (input_file.good()) {
+    tokens.push_back(lexer_323(input_file));
+  }
+
+  // Print tokens
+//for (const auto& token : tokens) {
+//    token.TokenPrintHelper();
+//  }
+
+
+
 
   //Uncomment whatever function you would like to test
   // R28 <Primary>
